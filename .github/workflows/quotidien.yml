@@ -1,0 +1,73 @@
+# Chaque matin : collecte du BODACC, envoi des alertes, reconstruction et mise en ligne du site.
+# Se lance aussi à chaque modification d'un fichier du dépôt, et à la demande (onglet Actions).
+name: Mise à jour quotidienne
+
+on:
+  schedule:
+    - cron: "30 5 * * *"   # 5 h 30 en temps universel, soit 6 h 30 ou 7 h 30 à Paris
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: site
+  cancel-in-progress: false
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    environment:
+      name: github-pages
+      url: ${{ steps.mise-en-ligne.outputs.page_url }}
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v6
+
+      - name: Installer Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Collecter les procédures au BODACC
+        if: github.event_name != 'push'
+        continue-on-error: true
+        run: python outils/collecte.py
+
+      - name: Envoyer les alertes
+        if: github.event_name == 'schedule'
+        continue-on-error: true
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+        run: python outils/alertes.py
+
+      - name: Construire le site
+        run: python outils/construire.py
+
+      - name: Enregistrer les données dans le dépôt
+        run: |
+          git config user.name "Mise à jour automatique"
+          git config user.email "actions@users.noreply.github.com"
+          git add donnees/procedures.json donnees/etat.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Données du $(date +%F)"
+            git pull --rebase --autostash
+            git push
+          fi
+
+      - name: Préparer la mise en ligne
+        uses: actions/configure-pages@v5
+
+      - name: Envoyer les pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+
+      - name: Mettre en ligne
+        id: mise-en-ligne
+        uses: actions/deploy-pages@v4
