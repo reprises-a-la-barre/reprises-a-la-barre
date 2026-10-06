@@ -1,0 +1,9 @@
+Déposer ici le fichier de la police EB Garamond :
+
+    EBGaramond-VariableFont_wght.ttf
+
+On l'obtient gratuitement sur fonts.google.com (chercher « EB Garamond », bouton de téléchargement).
+Le fichier se trouve dans l'archive téléchargée. Sa licence (SIL Open Font License) autorise cet usage.
+
+Tant que le fichier manque, les titres s'affichent dans une police de secours.
+La police est servie par le site lui-même : aucune requête ne part vers Google.

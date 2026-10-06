@@ -1,0 +1,62 @@
+# ---------------------------------------------------------------------------
+# Réglages du site. Tout ce qui se change sans toucher au code est ici.
+# Après chaque modification, le site se reconstruit tout seul (une à deux minutes).
+# ---------------------------------------------------------------------------
+
+[site]
+nom = "Reprises à la barre"
+accroche = "Les entreprises à reprendre devant les tribunaux."
+description = "Appels d'offres et procédures collectives ouvertes, partout en France. Chaque dossier est lu par un avocat."
+# Adresse publique du site, sans barre finale. Exemple : "https://moncompte.github.io/reprises-a-la-barre"
+# Nécessaire pour les liens des e-mails d'alerte.
+adresse = ""
+# false : les moteurs de recherche sont priés de ne pas référencer le site (phase d'essai).
+# true  : le site est ouvert au référencement. À ne passer à true qu'après l'avis de l'Ordre.
+indexation = false
+
+[editeur]
+nom = "Augustin Croze"
+qualite = "avocat au Barreau de Lyon"
+adresse = "25 rue Bossuet, 69006 Lyon"
+email = "a.croze@croze-avocat.com"
+telephone = ""
+# Mentions obligatoires, à compléter avant l'ouverture au public.
+siret = ""
+tva = ""
+hebergeur = ""
+# Texte de la page « L'avocat » : un paragraphe par ligne.
+presentation = [
+  "Augustin Croze intervient en contentieux commercial, dans les litiges entre associés et en procédures collectives.",
+  "Il édite Reprises à la barre et accompagne les repreneurs qui déposent une offre devant le tribunal.",
+]
+# Honoraires affichés sur la page « L'avocat ». Laisser vide pour masquer la ligne.
+honoraires_premier_avis = ""
+honoraires_accompagnement = ""
+
+[collecte]
+# Nombre de jours pendant lesquels une procédure reste affichée.
+jours_conserves = 45
+# Au tout premier lancement, nombre de jours de BODACC à relire.
+jours_au_premier_lancement = 10
+# Taille minimale (code INSEE de tranche d'effectif) :
+# "NN" ou "00" aucun salarié, "01" 1 à 2, "02" 3 à 5, "03" 6 à 9, "11" 10 à 19, "12" 20 à 49, "21" 50 à 99...
+# Une société dotée d'un administrateur judiciaire est conservée quelle que soit sa taille.
+effectif_minimum = "01"
+# false : seuls les redressements judiciaires sont repris.
+inclure_liquidations = true
+# true : les entrepreneurs individuels (personnes physiques) sont écartés.
+personnes_morales_seulement = true
+
+[alertes]
+# À passer à true une fois le compte Brevo réglé (voir GUIDE.md, étape 6).
+actives = false
+expediteur_nom = "Reprises à la barre"
+expediteur_email = ""
+# Numéro de la liste de contacts dans Brevo.
+liste_brevo = 0
+# Adresse « action » du formulaire d'inscription Brevo.
+url_formulaire = ""
+# Adresse du formulaire de désinscription Brevo.
+url_desinscription = ""
+maximum_par_email = 30
+maximum_emails_par_jour = 280

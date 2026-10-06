@@ -1,0 +1,49 @@
+[
+ {
+  "email": "tout@exemple.invalid",
+  "emailBlacklisted": false,
+  "attributes": {
+   "CRITERES": "secteurs=;regions=;tailles=;rythme=now;aj=0"
+  }
+ },
+ {
+  "email": "industrie-aura@exemple.invalid",
+  "emailBlacklisted": false,
+  "attributes": {
+   "CRITERES": "secteurs=Industrie;regions=Auvergne-Rhône-Alpes;tailles=;rythme=now;aj=0"
+  }
+ },
+ {
+  "email": "avec-aj@exemple.invalid",
+  "emailBlacklisted": false,
+  "attributes": {
+   "CRITERES": "secteurs=;regions=;tailles=;rythme=now;aj=1"
+  }
+ },
+ {
+  "email": "vendredi@exemple.invalid",
+  "emailBlacklisted": false,
+  "attributes": {
+   "CRITERES": "secteurs=;regions=;tailles=;rythme=weekly;aj=0"
+  }
+ },
+ {
+  "email": "bretagne@exemple.invalid",
+  "emailBlacklisted": false,
+  "attributes": {
+   "CRITERES": "secteurs=;regions=Bretagne;tailles=;rythme=now;aj=0"
+  }
+ },
+ {
+  "email": "desinscrit@exemple.invalid",
+  "emailBlacklisted": true,
+  "attributes": {
+   "CRITERES": ""
+  }
+ },
+ {
+  "email": "sans-critere@exemple.invalid",
+  "emailBlacklisted": false,
+  "attributes": {}
+ }
+]
